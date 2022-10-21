@@ -37,6 +37,14 @@ RUN pyenv install -v 3.8.10
 RUN pyenv global 3.8.10
 RUN pyenv rehash
 
+RUN python -m pip install --upgrade pip
+
+RUN python --version
+RUN pip --version
+
+RUN pip install --no-cache-dir pkgconfig Cython
+
+
 COPY requirements.txt /tmp/
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 RUN pip install --no-cache-dir pre-commit==2.15.0 pylint==2.5.2
