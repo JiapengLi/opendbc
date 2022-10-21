@@ -61,4 +61,9 @@ COPY . /project/opendbc
 
 RUN rm -rf /project/opendbc/.git
 RUN rm -rf /project/cereal/.git
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    linux-headers-`uname -r` \
+  && rm -rf /var/lib/apt/lists/*
+
 RUN scons -c && scons -j$(nproc)
